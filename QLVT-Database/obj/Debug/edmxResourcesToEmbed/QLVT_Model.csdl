@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_VATTUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CT_PHATSINH">
+    <Key>
+      <PropertyRef Name="PHIEU" />
+      <PropertyRef Name="MAVT" />
+    </Key>
+    <Property Name="PHIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MAVT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="SOLUONG" Type="Int32" Nullable="false" />
+    <Property Name="DONGIA" Type="Double" Nullable="false" />
+    <Property Name="trigia" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="PHATSINH" Relationship="Self.FK_CT_PHATSINH_PHATSINH" FromRole="CT_PHATSINH" ToRole="PHATSINH" />
+    <NavigationProperty Name="VATTU" Relationship="Self.FK_CT_PHATSINH_VATTU" FromRole="CT_PHATSINH" ToRole="VATTU" />
+  </EntityType>
+  <EntityType Name="KHO">
+    <Key>
+      <PropertyRef Name="MAKHO" />
+    </Key>
+    <Property Name="MAKHO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TENKHO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MACN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PHATSINHs" Relationship="Self.FK_PHATSINH_KHO" FromRole="KHO" ToRole="PHATSINH" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="Int32" Nullable="false" />
+    <Property Name="HO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TEN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PHAI" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DIACHI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NGAYSINH" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LUONG" Type="Double" Nullable="false" />
+    <Property Name="HINH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GHICHU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHATSINHs" Relationship="Self.FK_PHATSINH_NHANVIEN" FromRole="NHANVIEN" ToRole="PHATSINH" />
+  </EntityType>
+  <EntityType Name="PHATSINH">
+    <Key>
+      <PropertyRef Name="PHIEU" />
+    </Key>
+    <Property Name="PHIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LOAI" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="HOTENKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MANV" Type="Int32" Nullable="false" />
+    <Property Name="LYDO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MAKHO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CT_PHATSINH" Relationship="Self.FK_CT_PHATSINH_PHATSINH" FromRole="PHATSINH" ToRole="CT_PHATSINH" />
+    <NavigationProperty Name="KHO" Relationship="Self.FK_PHATSINH_KHO" FromRole="PHATSINH" ToRole="KHO" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_PHATSINH_NHANVIEN" FromRole="PHATSINH" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="VATTU">
+    <Key>
+      <PropertyRef Name="MAVT" />
+    </Key>
+    <Property Name="MAVT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TENVT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DVT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CT_PHATSINH" Relationship="Self.FK_CT_PHATSINH_VATTU" FromRole="VATTU" ToRole="CT_PHATSINH" />
+  </EntityType>
+  <Association Name="FK_CT_PHATSINH_PHATSINH">
+    <End Role="PHATSINH" Type="Self.PHATSINH" Multiplicity="1" />
+    <End Role="CT_PHATSINH" Type="Self.CT_PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHATSINH">
+        <PropertyRef Name="PHIEU" />
+      </Principal>
+      <Dependent Role="CT_PHATSINH">
+        <PropertyRef Name="PHIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CT_PHATSINH_VATTU">
+    <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+    <End Role="CT_PHATSINH" Type="Self.CT_PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VATTU">
+        <PropertyRef Name="MAVT" />
+      </Principal>
+      <Dependent Role="CT_PHATSINH">
+        <PropertyRef Name="MAVT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHATSINH_KHO">
+    <End Role="KHO" Type="Self.KHO" Multiplicity="0..1" />
+    <End Role="PHATSINH" Type="Self.PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="MAKHO" />
+      </Principal>
+      <Dependent Role="PHATSINH">
+        <PropertyRef Name="MAKHO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHATSINH_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHATSINH" Type="Self.PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="PHATSINH">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QL_VATTUEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CT_PHATSINH" EntityType="Self.CT_PHATSINH" />
+    <EntitySet Name="KHOes" EntityType="Self.KHO" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="PHATSINHs" EntityType="Self.PHATSINH" />
+    <EntitySet Name="VATTUs" EntityType="Self.VATTU" />
+    <AssociationSet Name="FK_CT_PHATSINH_PHATSINH" Association="Self.FK_CT_PHATSINH_PHATSINH">
+      <End Role="PHATSINH" EntitySet="PHATSINHs" />
+      <End Role="CT_PHATSINH" EntitySet="CT_PHATSINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CT_PHATSINH_VATTU" Association="Self.FK_CT_PHATSINH_VATTU">
+      <End Role="VATTU" EntitySet="VATTUs" />
+      <End Role="CT_PHATSINH" EntitySet="CT_PHATSINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHATSINH_KHO" Association="Self.FK_PHATSINH_KHO">
+      <End Role="KHO" EntitySet="KHOes" />
+      <End Role="PHATSINH" EntitySet="PHATSINHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHATSINH_NHANVIEN" Association="Self.FK_PHATSINH_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHATSINH" EntitySet="PHATSINHs" />
+    </AssociationSet>
+    <FunctionImport Name="SP_CT_PHATSINH" ReturnType="Collection(QL_VATTUModel.SP_CT_PHATSINH_Result)" />
+    <FunctionImport Name="SP_CT_PHATSINHbyId" ReturnType="Collection(QL_VATTUModel.SP_CT_PHATSINHbyId_Result)">
+      <Parameter Name="maphieu" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DANGNHAP" ReturnType="Collection(QL_VATTUModel.SP_DANGNHAP_Result)">
+      <Parameter Name="TENLOGIN" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_KHO" ReturnType="Collection(QL_VATTUModel.SP_KHO_Result)" />
+    <FunctionImport Name="SP_KHObyId" ReturnType="Collection(QL_VATTUModel.SP_KHObyId_Result)">
+      <Parameter Name="makho" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_NHANVIEN" ReturnType="Collection(QL_VATTUModel.SP_NHANVIEN_Result)" />
+    <FunctionImport Name="SP_NHANVIENbyId" ReturnType="Collection(QL_VATTUModel.SP_NHANVIENbyId_Result)">
+      <Parameter Name="manv" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_PHATSINH" ReturnType="Collection(QL_VATTUModel.SP_PHATSINH_Result)" />
+    <FunctionImport Name="SP_PHATSINHbyId" ReturnType="Collection(QL_VATTUModel.SP_PHATSINHbyId_Result)">
+      <Parameter Name="maphieu" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PhieuNvLapTrongNamTheoLoai_" ReturnType="Collection(QL_VATTUModel.sp_PhieuNvLapTrongNamTheoLoai__Result)">
+      <Parameter Name="MANV" Mode="In" Type="Int32" />
+      <Parameter Name="LOAI" Mode="In" Type="String" />
+      <Parameter Name="NAM" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_SLTON_VATTU" ReturnType="Collection(QL_VATTUModel.SP_SLTON_VATTU_Result)">
+      <Parameter Name="MAVT" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_VATTU" ReturnType="Collection(QL_VATTUModel.SP_VATTU_Result)" />
+    <FunctionImport Name="SP_VATTUbyId" ReturnType="Collection(QL_VATTUModel.SP_VATTUbyId_Result)">
+      <Parameter Name="mavt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_InsertVattu">
+      <Parameter Name="mavt" Mode="In" Type="String" />
+      <Parameter Name="tenvt" Mode="In" Type="String" />
+      <Parameter Name="dvt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UpdateVattu">
+      <Parameter Name="mavt" Mode="In" Type="String" />
+      <Parameter Name="tenvt" Mode="In" Type="String" />
+      <Parameter Name="dvt" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DeleteVattu">
+      <Parameter Name="mavt" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_CT_PHATSINH_Result">
+    <Property Type="String" Name="PHIEU" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="MAVT" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="SOLUONG" Nullable="false" />
+    <Property Type="Double" Name="DONGIA" Nullable="false" />
+    <Property Type="Double" Name="trigia" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_CT_PHATSINHbyId_Result">
+    <Property Type="String" Name="PHIEU" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="NGAY" Nullable="false" Precision="16" />
+    <Property Type="String" Name="LOAI" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="HOTENKH" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="MANV" Nullable="false" />
+    <Property Type="String" Name="LYDO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MAKHO" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_DANGNHAP_Result">
+    <Property Type="String" Name="USERNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HOTEN" Nullable="true" MaxLength="61" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="SP_KHO_Result">
+    <Property Type="String" Name="MAKHO" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TENKHO" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MACN" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_KHObyId_Result">
+    <Property Type="String" Name="MAKHO" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TENKHO" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="DIACHI" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MACN" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_NHANVIEN_Result">
+    <Property Type="Int32" Name="MANV" Nullable="false" />
+    <Property Type="String" Name="HO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TEN" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="PHAI" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="DIACHI" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="NGAYSINH" Nullable="false" Precision="16" />
+    <Property Type="Double" Name="LUONG" Nullable="false" />
+    <Property Type="String" Name="HINH" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SP_NHANVIENbyId_Result">
+    <Property Type="Int32" Name="MANV" Nullable="false" />
+    <Property Type="String" Name="HO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TEN" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="PHAI" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="DIACHI" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="NGAYSINH" Nullable="false" Precision="16" />
+    <Property Type="Double" Name="LUONG" Nullable="false" />
+    <Property Type="String" Name="HINH" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="GHICHU" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SP_PHATSINH_Result">
+    <Property Type="String" Name="PHIEU" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="NGAY" Nullable="false" Precision="16" />
+    <Property Type="String" Name="LOAI" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="HOTENKH" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="MANV" Nullable="false" />
+    <Property Type="String" Name="LYDO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MAKHO" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="SP_PHATSINHbyId_Result">
+    <Property Type="String" Name="PHIEU" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="NGAY" Nullable="false" Precision="16" />
+    <Property Type="String" Name="LOAI" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="HOTENKH" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="MANV" Nullable="false" />
+    <Property Type="String" Name="LYDO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MAKHO" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="sp_PhieuNvLapTrongNamTheoLoai__Result">
+    <Property Type="String" Name="PHIEU" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="NGAY" Nullable="false" Precision="16" />
+    <Property Type="String" Name="TENVT" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="SOLUONG" Nullable="false" />
+    <Property Type="Double" Name="DONGIA" Nullable="false" />
+    <Property Type="Double" Name="TRIGIA" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_SLTON_VATTU_Result">
+    <Property Type="String" Name="MAVT" Nullable="true" MaxLength="4" />
+    <Property Type="Int32" Name="SOLUONGTON" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_VATTU_Result">
+    <Property Type="String" Name="MAVT" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TENVT" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DVT" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_VATTUbyId_Result">
+    <Property Type="String" Name="MAVT" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TENVT" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DVT" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QL_VATTUModelStoreContainer" CdmEntityContainer="QL_VATTUEntities">
+    <EntitySetMapping Name="CT_PHATSINH">
+      <EntityTypeMapping TypeName="QL_VATTUModel.CT_PHATSINH">
+        <MappingFragment StoreEntitySet="CT_PHATSINH">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="MAVT" ColumnName="MAVT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+          <ScalarProperty Name="trigia" ColumnName="trigia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHOes">
+      <EntityTypeMapping TypeName="QL_VATTUModel.KHO">
+        <MappingFragment StoreEntitySet="KHO">
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+          <ScalarProperty Name="TENKHO" ColumnName="TENKHO" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="MACN" ColumnName="MACN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHANVIENs">
+      <EntityTypeMapping TypeName="QL_VATTUModel.NHANVIEN">
+        <MappingFragment StoreEntitySet="NHANVIEN">
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="HO" ColumnName="HO" />
+          <ScalarProperty Name="TEN" ColumnName="TEN" />
+          <ScalarProperty Name="PHAI" ColumnName="PHAI" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+          <ScalarProperty Name="HINH" ColumnName="HINH" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHATSINHs">
+      <EntityTypeMapping TypeName="QL_VATTUModel.PHATSINH">
+        <MappingFragment StoreEntitySet="PHATSINH">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+          <ScalarProperty Name="HOTENKH" ColumnName="HOTENKH" />
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="LYDO" ColumnName="LYDO" />
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VATTUs">
+      <EntityTypeMapping TypeName="QL_VATTUModel.VATTU">
+        <MappingFragment StoreEntitySet="VATTU">
+          <ScalarProperty Name="MAVT" ColumnName="MAVT" />
+          <ScalarProperty Name="TENVT" ColumnName="TENVT" />
+          <ScalarProperty Name="DVT" ColumnName="DVT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_CT_PHATSINH" FunctionName="QL_VATTUModel.Store.SP_CT_PHATSINH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_CT_PHATSINH_Result">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="MAVT" ColumnName="MAVT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+          <ScalarProperty Name="trigia" ColumnName="trigia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CT_PHATSINHbyId" FunctionName="QL_VATTUModel.Store.SP_CT_PHATSINHbyId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_CT_PHATSINHbyId_Result">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+          <ScalarProperty Name="HOTENKH" ColumnName="HOTENKH" />
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="LYDO" ColumnName="LYDO" />
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_DANGNHAP" FunctionName="QL_VATTUModel.Store.SP_DANGNHAP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_DANGNHAP_Result">
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_KHO" FunctionName="QL_VATTUModel.Store.SP_KHO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_KHO_Result">
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+          <ScalarProperty Name="TENKHO" ColumnName="TENKHO" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="MACN" ColumnName="MACN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_KHObyId" FunctionName="QL_VATTUModel.Store.SP_KHObyId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_KHObyId_Result">
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+          <ScalarProperty Name="TENKHO" ColumnName="TENKHO" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="MACN" ColumnName="MACN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_NHANVIEN" FunctionName="QL_VATTUModel.Store.SP_NHANVIEN">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_NHANVIEN_Result">
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="HO" ColumnName="HO" />
+          <ScalarProperty Name="TEN" ColumnName="TEN" />
+          <ScalarProperty Name="PHAI" ColumnName="PHAI" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+          <ScalarProperty Name="HINH" ColumnName="HINH" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_NHANVIENbyId" FunctionName="QL_VATTUModel.Store.SP_NHANVIENbyId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_NHANVIENbyId_Result">
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="HO" ColumnName="HO" />
+          <ScalarProperty Name="TEN" ColumnName="TEN" />
+          <ScalarProperty Name="PHAI" ColumnName="PHAI" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+          <ScalarProperty Name="LUONG" ColumnName="LUONG" />
+          <ScalarProperty Name="HINH" ColumnName="HINH" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PHATSINH" FunctionName="QL_VATTUModel.Store.SP_PHATSINH">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_PHATSINH_Result">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+          <ScalarProperty Name="HOTENKH" ColumnName="HOTENKH" />
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="LYDO" ColumnName="LYDO" />
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_PHATSINHbyId" FunctionName="QL_VATTUModel.Store.SP_PHATSINHbyId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_PHATSINHbyId_Result">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+          <ScalarProperty Name="HOTENKH" ColumnName="HOTENKH" />
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
+          <ScalarProperty Name="LYDO" ColumnName="LYDO" />
+          <ScalarProperty Name="MAKHO" ColumnName="MAKHO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PhieuNvLapTrongNamTheoLoai_" FunctionName="QL_VATTUModel.Store.sp_PhieuNvLapTrongNamTheoLoai_">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.sp_PhieuNvLapTrongNamTheoLoai__Result">
+          <ScalarProperty Name="PHIEU" ColumnName="PHIEU" />
+          <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+          <ScalarProperty Name="TENVT" ColumnName="TENVT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+          <ScalarProperty Name="TRIGIA" ColumnName="TRIGIA" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_SLTON_VATTU" FunctionName="QL_VATTUModel.Store.SP_SLTON_VATTU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_SLTON_VATTU_Result">
+          <ScalarProperty Name="MAVT" ColumnName="MAVT" />
+          <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_VATTU" FunctionName="QL_VATTUModel.Store.SP_VATTU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_VATTU_Result">
+          <ScalarProperty Name="MAVT" ColumnName="MAVT" />
+          <ScalarProperty Name="TENVT" ColumnName="TENVT" />
+          <ScalarProperty Name="DVT" ColumnName="DVT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_VATTUbyId" FunctionName="QL_VATTUModel.Store.SP_VATTUbyId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QL_VATTUModel.SP_VATTUbyId_Result">
+          <ScalarProperty Name="MAVT" ColumnName="MAVT" />
+          <ScalarProperty Name="TENVT" ColumnName="TENVT" />
+          <ScalarProperty Name="DVT" ColumnName="DVT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_InsertVattu" FunctionName="QL_VATTUModel.Store.SP_InsertVattu" />
+    <FunctionImportMapping FunctionImportName="SP_UpdateVattu" FunctionName="QL_VATTUModel.Store.SP_UpdateVattu" />
+    <FunctionImportMapping FunctionImportName="SP_DeleteVattu" FunctionName="QL_VATTUModel.Store.SP_DeleteVattu" />
+  </EntityContainerMapping>
+</Mapping>

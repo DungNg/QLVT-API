@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_VATTUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CT_PHATSINH">
+    <Key>
+      <PropertyRef Name="PHIEU" />
+      <PropertyRef Name="MAVT" />
+    </Key>
+    <Property Name="PHIEU" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="MAVT" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="SOLUONG" Type="int" Nullable="false" />
+    <Property Name="DONGIA" Type="float" Nullable="false" />
+    <Property Name="trigia" Type="float" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KHO">
+    <Key>
+      <PropertyRef Name="MAKHO" />
+    </Key>
+    <Property Name="MAKHO" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TENKHO" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MACN" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="int" Nullable="false" />
+    <Property Name="HO" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PHAI" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="100" />
+    <Property Name="NGAYSINH" Type="smalldatetime" Nullable="false" />
+    <Property Name="LUONG" Type="float" Nullable="false" />
+    <Property Name="HINH" Type="nvarchar" MaxLength="255" />
+    <Property Name="GHICHU" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PHATSINH">
+    <Key>
+      <PropertyRef Name="PHIEU" />
+    </Key>
+    <Property Name="PHIEU" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="NGAY" Type="smalldatetime" Nullable="false" />
+    <Property Name="LOAI" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="HOTENKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MANV" Type="int" Nullable="false" />
+    <Property Name="LYDO" Type="nvarchar" MaxLength="100" />
+    <Property Name="MAKHO" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="VATTU">
+    <Key>
+      <PropertyRef Name="MAVT" />
+    </Key>
+    <Property Name="MAVT" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TENVT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DVT" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CT_PHATSINH_PHATSINH">
+    <End Role="PHATSINH" Type="Self.PHATSINH" Multiplicity="1" />
+    <End Role="CT_PHATSINH" Type="Self.CT_PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHATSINH">
+        <PropertyRef Name="PHIEU" />
+      </Principal>
+      <Dependent Role="CT_PHATSINH">
+        <PropertyRef Name="PHIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CT_PHATSINH_VATTU">
+    <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+    <End Role="CT_PHATSINH" Type="Self.CT_PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VATTU">
+        <PropertyRef Name="MAVT" />
+      </Principal>
+      <Dependent Role="CT_PHATSINH">
+        <PropertyRef Name="MAVT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHATSINH_KHO">
+    <End Role="KHO" Type="Self.KHO" Multiplicity="0..1" />
+    <End Role="PHATSINH" Type="Self.PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHO">
+        <PropertyRef Name="MAKHO" />
+      </Principal>
+      <Dependent Role="PHATSINH">
+        <PropertyRef Name="MAKHO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHATSINH_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHATSINH" Type="Self.PHATSINH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="PHATSINH">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_CT_PHATSINH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_CT_PHATSINHbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maphieu" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_DANGNHAP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TENLOGIN" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_DeleteVattu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mavt" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertVattu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mavt" Type="varchar" Mode="In" />
+    <Parameter Name="tenvt" Type="nvarchar" Mode="In" />
+    <Parameter Name="dvt" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_KHO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_KHObyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="makho" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_NHANVIEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_NHANVIENbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="manv" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_PHATSINH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_PHATSINHbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maphieu" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PhieuNvLapTrongNamTheoLoai_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="sp_PhieuNvLapTrongNamTheoLoai ">
+    <Parameter Name="MANV" Type="int" Mode="In" />
+    <Parameter Name="LOAI" Type="char" Mode="In" />
+    <Parameter Name="NAM" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_SLTON_VATTU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MAVT" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UpdateVattu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mavt" Type="varchar" Mode="In" />
+    <Parameter Name="tenvt" Type="nvarchar" Mode="In" />
+    <Parameter Name="dvt" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_VATTU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_VATTUbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mavt" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="QL_VATTUModelStoreContainer">
+    <EntitySet Name="CT_PHATSINH" EntityType="Self.CT_PHATSINH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHO" EntityType="Self.KHO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHATSINH" EntityType="Self.PHATSINH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CT_PHATSINH_PHATSINH" Association="Self.FK_CT_PHATSINH_PHATSINH">
+      <End Role="PHATSINH" EntitySet="PHATSINH" />
+      <End Role="CT_PHATSINH" EntitySet="CT_PHATSINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CT_PHATSINH_VATTU" Association="Self.FK_CT_PHATSINH_VATTU">
+      <End Role="VATTU" EntitySet="VATTU" />
+      <End Role="CT_PHATSINH" EntitySet="CT_PHATSINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHATSINH_KHO" Association="Self.FK_PHATSINH_KHO">
+      <End Role="KHO" EntitySet="KHO" />
+      <End Role="PHATSINH" EntitySet="PHATSINH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHATSINH_NHANVIEN" Association="Self.FK_PHATSINH_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="PHATSINH" EntitySet="PHATSINH" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
